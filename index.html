@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrimonio di Samuele ed Elena</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://th.bing.com/th/id/OIG2.19LYfURNPJZEGzJXRb7I?w=1024&h=1024&rs=1&pid=ImgDetMain');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .invitation {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .couple-photo {
+            width: 100%;
+            max-width: 400px;
+            display: block;
+            margin: 20px auto;
+            border-radius: 5px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="text"], input[type="email"], textarea, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #34495e;
+        }
+        #confirmation {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="invitation">
+            <h1>Samuele ed Elena</h1>
+            <img src="https://img.lovepik.com/png/20231112/embrace-clipart-pair-of-cartoon-characters-hugging-each-other-flat_571611_wh860.png" alt="Samuele ed Elena" class="couple-photo">
+            <p>Siamo felici di invitarti al nostro matrimonio!</p>
+            
+            <h2>Dettagli dell'evento:</h2>
+            <ul>
+                <li><strong>Data:</strong> 31 Agosto 2025</li>
+                <li><strong>Ora:</strong> 17:00</li>
+                <li><strong>Luogo:</strong> "La Castella" - Regione Sant'Antonio 13, Villafranca d'Asti (AT) <br>
+                    <a href="https://maps.app.goo.gl/QnTeh1VFnArBHB7TA" target="_blank" class="map-link">Visualizza su Google Maps</a></li>
+            </ul>
+            
+            <h2>Conferma la tua presenza:</h2>
+            <form id="rsvpForm">
+                <label for="name">Nome e Cognome:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="attendance">Parteciperai?</label>
+                <select id="attendance" name="attendance" required>
+                    <option value="yes">Sì, parteciperò</option>
+                    <option value="no">No, non potrò partecipare</option>
+                </select>
+                
+                <label for="dietary">Intolleranze alimentari:</label>
+                <textarea id="dietary" name="dietary" rows="4"></textarea>
+                
+                <button type="submit">Invia risposta</button><br>
+            
+                <p>Se desiderate farci un regalo, potete effettuare un bonifico al seguente IBAN:</p>
+                <p><strong>IBAN</strong></p>
+
+            </form>
+            
+            <div id="confirmation">
+                Grazie per aver confermato la tua presenza! Non vediamo l'ora di condividere quel giorno con te 🥰
+            </div>
+        </div>
+    </div>
+
+    <script>
+          document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            var queryString = new URLSearchParams(formData).toString();
+            
+            fetch('https://script.google.com/macros/s/AKfycbzHzgbe7bb2oMKGrUEoeIYkqTGQHNi1liHU4TQI3CF3FNHqBAAEk8-kN06UizwI5Ler/exec' + queryString, {
+                method: 'GET',
+                mode: 'no-cors'
+            })
+            .then(response => {
+                document.getElementById('confirmation').style.display = 'block';
+                this.reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Si è verificato un errore. Per favore, riprova più tardi.');
+            });
+        });
+    </script>
+</body>
+</html>
