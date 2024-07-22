@@ -138,6 +138,29 @@
                 alert('Si è verificato un errore. Per favore, riprova più tardi.');
             });
         });
+
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            var queryString = new URLSearchParams(formData).toString();
+            
+            fetch('https://script.google.com/macros/s/AKfycbzHzgbe7bb2oMKGrUEoeIYkqTGQHNi1liHU4TQI3CF3FNHqBAAEk8-kN06UizwI5Ler/exec?' + queryString, {
+                method: 'GET',
+                mode: 'no-cors'
+            })
+            .then(response => {
+                var confirmationMessage = formData.get('attendance') === 'yes' 
+                    ? "Grazie per aver confermato la tua presenza! Non vediamo l'ora di condividere quel giorno con te 🥰"
+                    : 'Risposta inviata correttamente.';
+                document.getElementById('confirmation').textContent = confirmationMessage;
+                document.getElementById('confirmation').style.display = 'block';
+                this.reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Si è verificato un errore. Per favore, riprova più tardi.');
+            });
+        });
     </script>
 </body>
 </html>
