@@ -120,25 +120,6 @@
     </div>
 
     <script>
-          document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            var formData = new FormData(this);
-            var queryString = new URLSearchParams(formData).toString();
-            
-            fetch('https://script.google.com/macros/s/AKfycbzHzgbe7bb2oMKGrUEoeIYkqTGQHNi1liHU4TQI3CF3FNHqBAAEk8-kN06UizwI5Ler/exec?' + queryString, {
-                method: 'GET',
-                mode: 'no-cors'
-            })
-            .then(response => {
-                document.getElementById('confirmation').style.display = 'block';
-                this.reset();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Si è verificato un errore. Per favore, riprova più tardi.');
-            });
-        });
-
         document.getElementById('rsvpForm').addEventListener('submit', function(e) {
             e.preventDefault();
             var formData = new FormData(this);
@@ -161,6 +142,27 @@
                 alert('Si è verificato un errore. Per favore, riprova più tardi.');
             });
         });
+
+        document.getElementById('addToCalendar').addEventListener('click', function(e) {
+            e.preventDefault();
+            var event = {
+                title: 'Matrimonio di Samuele ed Elena',
+                start: '2025-08-31T17:00:00',
+                end: '2025-08-31T00:00:00',
+                location: "La Castella - Regione Sant'Antonio 13, Villafranca d'Asti (AT)",
+                description: 
+            };
+            
+            var googleCalendarUrl = 'https://www.google.com/calendar/render?action=TEMPLATE' +
+                '&text=' + encodeURIComponent(event.title) +
+                '&dates=' + event.start.replace(/[-:]/g, '') + '/' + event.end.replace(/[-:]/g, '') +
+                '&details=' + encodeURIComponent(event.description) +
+                '&location=' + encodeURIComponent(event.location) +
+                '&sprop=&sprop=name:';
+
+            window.open(googleCalendarUrl, '_blank');
+        });
+        
     </script>
 </body>
 </html>
