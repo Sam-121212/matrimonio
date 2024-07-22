@@ -72,22 +72,38 @@
             border-radius: 4px;
             display: none;
         }
+        .map-link, .calendar-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #2c3e50;
+            text-decoration: none;
+            border-bottom: 1px solid #2c3e50;
+        }
+        .map-link:hover, .calendar-link:hover {
+            color: #34495e;
+            border-bottom-color: #34495e;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="invitation">
             <h1>Samuele ed Elena</h1>
-            <img src="https://img.lovepik.com/png/20231112/embrace-clipart-pair-of-cartoon-characters-hugging-each-other-flat_571611_wh860.png" alt="Samuele ed Elena" class="couple-photo">
-            <p>Siamo felici di invitarti al nostro matrimonio!</p>
+            <img src="URL_DELLA_VOSTRA_FOTO" alt="Samuele ed Elena" class="couple-photo">
+            <p>Siamo felici di invitarvi al nostro matrimonio!</p>
             
             <h2>Dettagli dell'evento:</h2>
             <ul>
-                <li><strong>Data:</strong> <a href="#" class="calendar-link" id="addToCalendar">31 Agosto 2025</a></li>
-                <li><strong>Ora:</strong> 17:00</li>
-                <li><strong>Luogo:</strong> "La Castella" - Regione Sant'Antonio 13, Villafranca d'Asti (AT) <br>
-                    <a href="https://maps.app.goo.gl/QnTeh1VFnArBHB7TA" target="_blank" class="map-link">Visualizza su Google Maps</a></li>
+                <li><strong>Data e Ora:</strong> <a href="#" class="calendar-link" id="addToCalendar">31 Agosto 2025 dalle 17.00 alle 00.00</a></li>
+                <li><strong>Luogo:</strong> La Castella - Regione Sant'Antonio 13, Villafranca d'Asti (AT)
+                    <br>
+                    <a href="https://maps.app.goo.gl/QnTeh1VFnArBHB7TA" target="_blank" class="map-link">Visualizza su Google Maps</a>
+                </li>
             </ul>
+            
+            <h2>Regalo:</h2>
+            <p>Se desiderate farci un regalo, potete effettuare un bonifico al seguente IBAN:</p>
+            <p><strong>IT12A0123456789000000123456</strong></p>
             
             <h2>Conferma la tua presenza:</h2>
             <form id="rsvpForm">
@@ -106,16 +122,10 @@
                 <label for="dietary">Intolleranze alimentari:</label>
                 <textarea id="dietary" name="dietary" rows="4"></textarea>
                 
-                <button type="submit">Invia risposta</button><br>
-            
-                <p>Se desiderate farci un regalo, potete effettuare un bonifico al seguente IBAN:</p>
-                <p><strong>IBAN</strong></p>
-
+                <button type="submit">Invia risposta</button>
             </form>
             
-            <div id="confirmation">
-                Grazie per aver confermato la tua presenza! Non vediamo l'ora di condividere quel giorno con te 🥰
-            </div>
+            <div id="confirmation"></div>
         </div>
     </div>
 
@@ -131,8 +141,8 @@
             })
             .then(response => {
                 var confirmationMessage = formData.get('attendance') === 'yes' 
-                    ? "Grazie per aver confermato la tua presenza! Non vediamo l'ora di condividere quel giorno con te 🥰"
-                    : 'Risposta inviata correttamente.';
+                    ? 'Grazie per aver confermato la tua presenza! Non vediamo l\'ora di condividere quel giorno con te 🥰'
+                    : 'Risposta inviata correttamente';
                 document.getElementById('confirmation').textContent = confirmationMessage;
                 document.getElementById('confirmation').style.display = 'block';
                 this.reset();
@@ -148,9 +158,9 @@
             var event = {
                 title: 'Matrimonio di Samuele ed Elena',
                 start: '2025-08-31T17:00:00',
-                end: '2025-08-31T00:00:00',
-                location: "La Castella - Regione Sant'Antonio 13, Villafranca d'Asti (AT)",
-                description: 
+                end: '2025-09-01T00:00:00',
+                location: 'La Castella - Regione Sant\'Antonio 13, Villafranca d\'Asti (AT)',
+                description:
             };
             
             var googleCalendarUrl = 'https://www.google.com/calendar/render?action=TEMPLATE' +
@@ -162,7 +172,6 @@
 
             window.open(googleCalendarUrl, '_blank');
         });
-        
     </script>
 </body>
 </html>
