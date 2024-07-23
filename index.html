@@ -25,6 +25,11 @@
             color: #2c3e50;
             text-align: center;
         }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: auto;
+        }
         .invitation {
             background-color: rgba(255, 255, 255, 0.9);
             padding: 20px;
@@ -60,6 +65,7 @@
             border-radius: 4px;
             cursor: pointer;
             margin-top: 10px;
+            margin-bottom: 2em;
         }
         button:hover {
             background-color: #34495e;
@@ -84,9 +90,14 @@
             border-bottom-color: #34495e;
         }
         #nomi {
+            color: #2c3e50;
             font-family: cursive;
             font-size: 32px;
             text-align: center;
+        }
+        
+        #presenza {
+            margin-top: 2em;
         }
 
     
@@ -101,19 +112,19 @@
             
             <h2>Quando?</h2>
             
-                <li><a href="#" class="calendar-link" id="addToCalendar">31 Agosto 2025 dalle 17:00 🗓️</a></li>
+                <li><a href="#" class="calendar-link" id="addToCalendar">31 Agosto 2025 dalle 17:00  🗓️<i>(clicca qui)</i></a></li>
 
             <h2>Dove?</h2>
-                <li><a href="https://maps.app.goo.gl/QnTeh1VFnArBHB7TA" target="_blank" class="map-link">La Castella - Regione Sant'Antonio 13, Villafranca d'Asti (AT) 📍</a></li>
+                <li><a href="https://maps.app.goo.gl/QnTeh1VFnArBHB7TA" target="_blank" class="map-link">La Castella - Regione Sant'Antonio 13, Villafranca d'Asti (AT) 📍<i>(clicca qui)</i></a></li>
             
             
-            <h2>Conferma la tua presenza:</h2>
+            <h2 id="presenza">Conferma la tua presenza:</h2>
             <form id="rsvpForm">
                 <label for="name">Nome e Cognome:</label>
                 <input type="text" id="name" name="name" required>
                 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+             <!--   <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>  -->
                 
                 <label for="attendance">Parteciperai?</label>
                 <select id="attendance" name="attendance" required>
@@ -127,8 +138,8 @@
                 <button type="submit">Invia risposta</button>
             </form>
 
-            <p>Se desideri farci un regalo, puoi effettuare un bonifico al seguente IBAN:</p>
-            <p><strong>IT41I0301503200000004174018</strong></p>
+            <p id="iban">Se desideri farci un regalo, puoi effettuare un bonifico al seguente IBAN: <br><b>IT41I0301503200000004174018</b></p>
+           <!-- <p><strong>IT41I0301503200000004174018</strong></p> -->
             
             <div id="confirmation"></div>
         </div>
